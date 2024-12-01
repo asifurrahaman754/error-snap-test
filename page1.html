@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error Snap Test- page1</title>
+
+    <script src="https://errorsnap-sdk.netlify.app/"></script>
+  </head>
+  <body>
+    <h1>Page 1</h1>
+
+    <div>
+      <label for="projectId">Project ID:</label>
+      <input type="text" id="projectId" placeholder="Enter your project ID" />
+      <button onclick="initializeApp()">Initialize</button>
+    </div>
+
+    <div style="margin: 10px 0">
+      <a href="./index.html">Home</a>
+      <a href="./page2.html">Page 2</a>
+    </div>
+
+    <button onclick="throwTypeError()">Throw TypeError</button>
+    <button onclick="throwReferenceError()">Throw ReferenceError</button>
+    <button onclick="throwSyntaxError()">Throw SyntaxError</button>
+    <button onclick="throwCustomError()">Throw Custom Error</button>
+    <button onclick="throwUnhandledPromise()">
+      Throw Unhandled Promise Rejection
+    </button>
+    <button onclick="throwRangeError()">Throw RangeError</button>
+
+    <script>
+      function initializeApp() {
+        const projectId = document.getElementById("projectId").value;
+        if (!projectId) {
+          alert("Please enter a valid Project ID.");
+          return;
+        }
+        let app = new ErrorSnap({ projectId });
+        app.initialize();
+      }
+
+      // Error-throwing functions
+      function throwTypeError() {
+        const obj = undefined;
+        obj.someMethod(); // This will throw a TypeError
+      }
+
+      function throwReferenceError() {
+        console.log(nonExistentVariable); // This will throw a ReferenceError
+      }
+
+      function throwSyntaxError() {
+        eval("foo bar"); // This will throw a SyntaxError
+      }
+
+      function throwCustomError() {
+        throw new Error("This is a custom error for testing purposes.");
+      }
+
+      function throwUnhandledPromise() {
+        Promise.reject("Unhandled Promise Rejection Error");
+      }
+
+      function throwRangeError() {
+        const arr = [];
+        arr.length = -1; // This will throw a RangeError
+      }
+    </script>
+  </body>
+</html>
