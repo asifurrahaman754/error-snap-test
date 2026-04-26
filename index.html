@@ -1,19 +1,279 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Error Snap Test</title>
+    <title>AcmeFlow | Customer Operations Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f6f8fc;
+        --surface: #ffffff;
+        --text: #18212f;
+        --muted: #60708c;
+        --border: #dde4ef;
+        --primary: #2962ff;
+        --primary-strong: #1749d2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .container {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 72px;
+      }
+
+      .brand {
+        font-weight: 800;
+        font-size: 20px;
+      }
+
+      .brand span {
+        color: var(--primary);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 16px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .hero {
+        padding: 64px 0 38px;
+      }
+
+      .hero-wrap {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      h1 {
+        margin: 0 0 16px;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.1;
+      }
+
+      .lead {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .hero-actions {
+        margin-top: 22px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .btn {
+        border: none;
+        text-decoration: none;
+        border-radius: 10px;
+        padding: 11px 16px;
+        font-weight: 700;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-strong);
+      }
+
+      .btn-ghost {
+        background: #edf2ff;
+        color: var(--primary-strong);
+      }
+
+      .visual {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px;
+        box-shadow: 0 16px 32px rgba(21, 48, 106, 0.08);
+      }
+
+      .visual h3 {
+        margin: 0 0 8px;
+      }
+
+      .stat-list {
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .stat-list li {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px;
+        color: var(--muted);
+      }
+
+      .section {
+        padding: 14px 0 58px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+      }
+
+      .card h4 {
+        margin: 0 0 8px;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 20px 0;
+        color: var(--muted);
+        background: var(--surface);
+      }
+
+      @media (max-width: 900px) {
+        .hero-wrap,
+        .cards {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h1>
-      This is a demo page to showcase the errorsnap easily, navigate to
-      different pages and put your project id where you want to see the error
-    </h1>
+    <header>
+      <div class="container nav">
+        <div class="brand">Acme<span>Flow</span></div>
+        <nav class="nav-links">
+          <a href="#">Product</a>
+          <a href="#">Customers</a>
+          <a href="#">Pricing</a>
+          <a href="#">Docs</a>
+        </nav>
+      </div>
+    </header>
 
-    <div>
-      <a href="./page1.html">Page 1</a>
-      <a href="./page2.html">Page 2</a>
-    </div>
+    <main>
+      <section class="hero">
+        <div class="container hero-wrap">
+          <div>
+            <h1>Handle customer operations from one clean dashboard</h1>
+            <p class="lead">
+              AcmeFlow helps support, operations, and product teams manage
+              incidents, requests, and account health with less context
+              switching and faster decisions.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="./page1.html"
+                >Open Demo Workspace</a
+              >
+              <a class="btn btn-ghost" href="./page2.html"
+                >View Customer Portal</a
+              >
+            </div>
+          </div>
+
+          <aside class="visual">
+            <h3>Today at a glance</h3>
+            <ul class="stat-list">
+              <li>24 open incidents under active investigation</li>
+              <li>97.4% SLA compliance across enterprise accounts</li>
+              <li>3 critical escalations resolved in under 45 minutes</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container cards">
+          <article class="card">
+            <h4>Unified Work Queue</h4>
+            <p>
+              Bring inbound tickets, system alerts, and team ownership into a
+              single triage workflow.
+            </p>
+          </article>
+          <article class="card">
+            <h4>Smart Routing</h4>
+            <p>
+              Automatically assign requests based on severity, account plan, and
+              engineer specialty.
+            </p>
+          </article>
+          <article class="card">
+            <h4>Ops Analytics</h4>
+            <p>
+              Monitor throughput and recurring failure patterns with practical,
+              actionable reporting.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        AcmeFlow demo website for ErrorSnap tracking tests.
+      </div>
+    </footer>
   </body>
 </html>

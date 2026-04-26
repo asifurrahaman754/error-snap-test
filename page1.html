@@ -1,71 +1,271 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Error Snap Test- page1</title>
+    <title>AcmeFlow | Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <script src="https://errorsnap-sdk.netlify.app/"></script>
-  </head>
-  <body>
-    <h1>Page 1</h1>
-
-    <div>
-      <label for="projectId">Project ID:</label>
-      <input type="text" id="projectId" placeholder="Enter your project ID" />
-      <button onclick="initializeApp()">Initialize</button>
-    </div>
-
-    <div style="margin: 10px 0">
-      <a href="./index.html">Home</a>
-      <a href="./page2.html">Page 2</a>
-    </div>
-
-    <button onclick="throwTypeError()">Throw TypeError</button>
-    <button onclick="throwReferenceError()">Throw ReferenceError</button>
-    <button onclick="throwSyntaxError()">Throw SyntaxError</button>
-    <button onclick="throwCustomError()">Throw Custom Error</button>
-    <button onclick="throwUnhandledPromise()">
-      Throw Unhandled Promise Rejection
-    </button>
-    <button onclick="throwRangeError()">Throw RangeError</button>
-
-    <script>
-      function initializeApp() {
-        const projectId = document.getElementById("projectId").value;
-        if (!projectId) {
-          alert("Please enter a valid Project ID.");
-          return;
-        }
-        let app = new ErrorSnap({ projectId });
-        app.initialize();
+    <style>
+      :root {
+        --bg: #f6f8fc;
+        --surface: #ffffff;
+        --text: #18212f;
+        --muted: #60708c;
+        --border: #dde4ef;
+        --primary: #2962ff;
+        --danger: #c92b2b;
       }
 
-      // Error-throwing functions
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .container {
+        max-width: 1020px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 22px 0;
+      }
+
+      .brand {
+        margin: 0;
+        font-size: 22px;
+      }
+
+      .brand span {
+        color: var(--primary);
+      }
+
+      .links {
+        display: flex;
+        gap: 10px;
+      }
+
+      .links a {
+        text-decoration: none;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text);
+        padding: 8px 12px;
+        border-radius: 10px;
+        font-weight: 600;
+      }
+
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px;
+      }
+
+      .intro {
+        color: var(--muted);
+        margin-top: 0;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      input {
+        flex: 1;
+        min-width: 220px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 11px 12px;
+        font-size: 15px;
+      }
+
+      button {
+        border: none;
+        border-radius: 10px;
+        padding: 10px 13px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .init-btn {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .status {
+        color: var(--muted);
+        margin: 0;
+        min-height: 22px;
+      }
+
+      .error-grid {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .error-btn {
+        color: var(--danger);
+        background: #fff;
+        border: 1px solid #f4c8c8;
+      }
+
+      .log {
+        margin-top: 12px;
+        border: 1px dashed var(--border);
+        background: #fafcff;
+        border-radius: 10px;
+        padding: 10px;
+        color: var(--muted);
+        min-height: 42px;
+      }
+
+      @media (max-width: 840px) {
+        .top {
+          flex-direction: column;
+          gap: 10px;
+          align-items: flex-start;
+        }
+
+        .error-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="top">
+        <h1 class="brand">Acme<span>Flow</span> Workspace</h1>
+        <nav class="links">
+          <a href="./index.html">Home</a>
+          <a href="./page2.html">Customer Portal</a>
+        </nav>
+      </header>
+
+      <section class="panel">
+        <p class="intro">
+          Internal operations page. Use the controls below to initialize
+          ErrorSnap and trigger test errors.
+        </p>
+
+        <div class="row">
+          <input
+            type="text"
+            id="projectId"
+            placeholder="Enter your project ID"
+          />
+          <button class="init-btn" onclick="initializeApp()">
+            Initialize SDK
+          </button>
+        </div>
+        <p class="status" id="status">SDK not initialized.</p>
+
+        <div class="error-grid">
+          <button class="error-btn" onclick="throwTypeError()">
+            Throw TypeError
+          </button>
+          <button class="error-btn" onclick="throwReferenceError()">
+            Throw ReferenceError
+          </button>
+          <button class="error-btn" onclick="throwSyntaxError()">
+            Throw SyntaxError
+          </button>
+          <button class="error-btn" onclick="throwCustomError()">
+            Throw Custom Error
+          </button>
+          <button class="error-btn" onclick="throwUnhandledPromise()">
+            Unhandled Promise
+          </button>
+          <button class="error-btn" onclick="throwRangeError()">
+            Throw RangeError
+          </button>
+        </div>
+
+        <div class="log" id="eventLog">No error action triggered yet.</div>
+      </section>
+    </div>
+
+    <script>
+      const statusText = document.getElementById("status");
+      const eventLog = document.getElementById("eventLog");
+
+      const savedProjectId = localStorage.getItem("errorsnap_demo_project_id");
+      if (savedProjectId) {
+        document.getElementById("projectId").value = savedProjectId;
+      }
+
+      function updateLog(text) {
+        const time = new Date().toLocaleTimeString();
+        eventLog.textContent = "[" + time + "] " + text;
+      }
+
+      function initializeApp() {
+        const projectId = document.getElementById("projectId").value.trim();
+        if (!projectId) {
+          statusText.textContent = "Please enter a valid project ID.";
+          return;
+        }
+
+        let app = new ErrorSnap({ projectId });
+        app.initialize();
+        localStorage.setItem("errorsnap_demo_project_id", projectId);
+        statusText.textContent =
+          "SDK initialized with project ID: " + projectId;
+        updateLog("ErrorSnap initialized.");
+      }
+
       function throwTypeError() {
+        updateLog("Triggering TypeError");
         const obj = undefined;
-        obj.someMethod(); // This will throw a TypeError
+        obj.someMethod();
       }
 
       function throwReferenceError() {
-        console.log(nonExistentVariable); // This will throw a ReferenceError
+        updateLog("Triggering ReferenceError");
+        console.log(nonExistentVariable);
       }
 
       function throwSyntaxError() {
-        eval("foo bar"); // This will throw a SyntaxError
+        updateLog("Triggering SyntaxError");
+        eval("foo bar");
       }
 
       function throwCustomError() {
+        updateLog("Triggering custom business error");
         throw new Error("This is a custom error for testing purposes.");
       }
 
       function throwUnhandledPromise() {
+        updateLog("Triggering unhandled promise rejection");
         Promise.reject("Unhandled Promise Rejection Error");
       }
 
       function throwRangeError() {
+        updateLog("Triggering RangeError");
         const arr = [];
-        arr.length = -1; // This will throw a RangeError
+        arr.length = -1;
       }
     </script>
   </body>
