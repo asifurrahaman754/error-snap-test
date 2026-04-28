@@ -226,14 +226,15 @@
               <a class="btn btn-primary" href="./page1.html"
                 >Open Demo Workspace</a
               >
-              <a
+              <button
                 class="btn btn-ghost"
-                href="./page3.html"
                 onclick="
-                  throw new Error('Customer Portal Error');
-                  return false;
+                  const currentUser = JSON.parse(localStorage.getItem('user'));
+                  currentUser.permissions.canViewPortal();
                 "
-                >View Customer Portal</a
+              >
+                View Customer Portal
+              </button>
               >
             </div>
           </div>
