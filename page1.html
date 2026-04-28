@@ -162,10 +162,11 @@
           <a href="./index.html">Home</a>
           <a
             class="btn btn-ghost"
-            href="./page3.html"
+            href="#"
             onclick="
-              throw new Error('Customer Portal Error');
-              return false;
+              event.preventDefault();
+              const currentUser = JSON.parse(localStorage.getItem('user'));
+              currentUser.permissions.canViewPortal();
             "
             >View Customer Portal</a
           >
