@@ -226,7 +226,13 @@
               <a class="btn btn-primary" href="./page1.html"
                 >Open Demo Workspace</a
               >
-              <a class="btn btn-ghost" href="./page2.html"
+              <a
+                class="btn btn-ghost"
+                href="./page3.html"
+                onclick="
+                  throw new Error('Customer Portal Error');
+                  return false;
+                "
                 >View Customer Portal</a
               >
             </div>

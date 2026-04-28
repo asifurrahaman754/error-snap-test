@@ -160,7 +160,15 @@
         <h1 class="brand">Acme<span>Flow</span> Workspace</h1>
         <nav class="links">
           <a href="./index.html">Home</a>
-          <a href="./page2.html">Customer Portal</a>
+          <a
+            class="btn btn-ghost"
+            href="./page3.html"
+            onclick="
+              throw new Error('Customer Portal Error');
+              return false;
+            "
+            >View Customer Portal</a
+          >
         </nav>
       </header>
 
